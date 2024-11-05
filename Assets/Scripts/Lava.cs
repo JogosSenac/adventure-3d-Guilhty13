@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Lava : MonoBehaviour
 {
+    
     public float speedY = 3.5f;
     public float speedX = 3.5f;
     MeshRenderer rend;
@@ -18,5 +19,6 @@ public class Lava : MonoBehaviour
     {
         rend.material.mainTextureOffset = new Vector2 (speedX * Time.timeSinceLevelLoad,
                                                        speedY * Time.timeSinceLevelLoad);
+                                                     
     }
 }

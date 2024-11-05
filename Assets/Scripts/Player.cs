@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Chao"))
         {
             estaPulando = false;
-            animator.SetBool("EstaNoChao", true);
+            animator.SetBool("EstaNoChao", true);   
         }
         if(collision.gameObject.CompareTag("Placa"))
         {
@@ -158,7 +158,17 @@ public class Player : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Porta"))
         {
-            SceneManager.LoadScene("Cena2");
+            
+            
+            SceneManager.LoadScene("Fase2");
+            
+        }
+        if(collision.gameObject.CompareTag("Porta2"))
+        {
+            
+            
+            SceneManager.LoadScene("Fim");
+            
         }
         
     }
@@ -171,6 +181,13 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag ("Placa"))
         {
             estaVivo = false;
+            
+        }
+        if(other.gameObject.CompareTag("Porta2"))
+        {
+            
+            
+            SceneManager.LoadScene("Fim");
             
         }
        

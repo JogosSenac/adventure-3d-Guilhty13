@@ -11,6 +11,8 @@ public class Jogo : MonoBehaviour
     [SerializeField] private GameObject TelaDaMorte;
     private GameObject [] Moeda;
     [SerializeField] public TextMeshProUGUI pontos;
+    [SerializeField] private TextMeshProUGUI pontosRestantes;
+    [SerializeField] private TextMeshProUGUI avisoMissao;
     
     
     
@@ -21,7 +23,8 @@ public class Jogo : MonoBehaviour
         TelaDaMorte.SetActive(false);
         pontos = GameObject.Find("Pontos").GetComponent<TextMeshProUGUI>();
         Moeda = GameObject.FindGameObjectsWithTag("Moeda");
-        
+        pontosRestantes = GameObject.FindWithTag("PontosRestantes").GetComponent<TextMeshProUGUI>();
+        pontosRestantes.text = Moeda.Length.ToString();
 
     }
 
@@ -33,10 +36,45 @@ public class Jogo : MonoBehaviour
            TelaDaMorte.SetActive(true);
         }
         pontos.text = player.ContagemPontos().ToString();
+        int contagem = player.ContagemPontos();
+
+        if(player.ContagemPontos() >= Moeda.Length)
+        {
+            
+            avisoMissao.text = "Encoste na Porta";
+            
+        }
+        else
+        {
+            avisoMissao.text = "Colete as moedas";
+        }
+    
 
         
+    }
+    public bool PodePassarFase()
+    {
+        if(player.ContagemPontos() >= Moeda.Length)
+        {
+            return true;
+            
+        }
 
-        
+        return false;
+    }
+    public void Play()
+    {
+        SceneManager.LoadScene("Fase1");
+    }
+
+    public void Creditos()
+    {
+        SceneManager.LoadScene("Creditos");
+    }
+
+    public void VoltarMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
     public void replay()
     {
@@ -46,6 +84,10 @@ public class Jogo : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+    public void End()
+    {
+        SceneManager.LoadScene("Fim");
     }
  
     
