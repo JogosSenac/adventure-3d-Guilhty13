@@ -20,11 +20,9 @@ public class Player : MonoBehaviour
     [SerializeField] private bool temChave;
     [SerializeField] private bool pegando;
     [SerializeField] private bool podePegar;
-    [SerializeField] private List<GameObject> inventario = new List<GameObject>();
     private Rigidbody rb;
     private bool estaPulando;
     private Vector3 angleRotation;
-    
     public TextMeshProUGUI Pontos;
     private List<string> listaAvisos = new List<string>();
     public int pontos;
@@ -41,9 +39,7 @@ public class Player : MonoBehaviour
         angleRotation = new Vector3(0, 90, 0);
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-       
         Pontos = GameObject.FindGameObjectWithTag("Ouro").GetComponent<TextMeshProUGUI>();
-        
     }
 
     // Update is called once per frame
@@ -154,66 +150,44 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Placa"))
         {
             estaVivo = false;
-            
         }
         if(collision.gameObject.CompareTag("Porta"))
         {
-            
-            
             SceneManager.LoadScene("Fase2");
-            
         }
         if(collision.gameObject.CompareTag("Porta2"))
         {
-            
-            
-            SceneManager.LoadScene("Fim");
-            
+            SceneManager.LoadScene("Creditos");
         }
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         podePegar = true;
-        
 
         if(other.gameObject.CompareTag ("Placa"))
         {
             estaVivo = false;
-            
         }
         if(other.gameObject.CompareTag("Porta2"))
         {
-            
-            
             SceneManager.LoadScene("Fim");
-            
         }
-       
-    
         if(other.gameObject.CompareTag("Moeda"))
         {
             pontos++;
             Destroy(other.gameObject);
-            
         }
-        
-    
     }
 
     private void OnTriggerStay(Collider other)
     {
         Debug.Log(other.gameObject.tag);
-      
-        
-        
         if(other.gameObject.CompareTag("Porta") && pegando && temChave)
         {
             other.gameObject.GetComponent<Animator>().SetTrigger("Abrir");
         }
-
-       
     }
 
     private void OnTriggerExit(Collider other)
@@ -223,19 +197,8 @@ public class Player : MonoBehaviour
     }
 public int ContagemPontos()
     { return pontos; }
-    
-
-    
-
-
-   
-
-    
-
     public bool VerificaSePlayerEstaVivo()
     {
         return estaVivo;
-    
     }
-    
 }

@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Projeto compartilhado.sln"
+    "dotnet.defaultSolution": "Jump-Quest.sln"
 }
